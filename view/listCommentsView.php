@@ -23,7 +23,7 @@
             
             ?>
                 <p>
-                    <b><?= $comments['content'] ?> <?= $comments['creation_date'] ?></b> : <?= $comments['score'] ?>/5</p>
+                    <?= $comments['content'] ?> <br><b><?= $comments['score'] ?>/5</b></p>
             <?php
                 }
             ?>
