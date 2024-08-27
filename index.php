@@ -8,13 +8,14 @@
                 getHomepage();
             } else if($_GET['page'] == 'avis'){
                 getCommentpage();
+            } else {
+                throw new Exception("Cette page n'existe pas ou a été supprimée!");
             }
         } else {
-                getHomepage();
+            getHomepage();
         }
     }
     catch(Exception $e) {
-        // die('Erreur : '.$e->getmessage());
         $error = $e->getmessage();
         require('view/errorView.php');
     }
