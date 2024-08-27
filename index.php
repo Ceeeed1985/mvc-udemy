@@ -1,42 +1,20 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>Vive le MVC !</title>
-        <link rel="stylesheet" href="design/default.css" />
-    </head>
+<?php
 
-    <body>
-
-        <header>
-            <span>MVC</span>
-        </header>
-
-        <section class="container">
-        
-            <h1>Bienvenue sur mon site MVC</h1>
-            <p>Voici la liste des utilisateurs :</p>
-
-            <?php
-
-                try {
-                    $bdd = new PDO('mysql:host=localhost;dbname=mvc;charset=utf8', 'root', '');
-                }
-                catch(Exception $e) {
-                    die('Erreur : '.$e->getMessage());
-                }
-                
-                $requete = $bdd->query('SELECT * FROM utilisateurs');
-                
-                while($utilisateur = $requete->fetch()) {
-            
-            ?>
-                <p><b><?= $utilisateur['prenom'] ?> <?= $utilisateur['nom'] ?></b> : <?= $utilisateur['email'] ?></p>
-            <?php
-                }
-            ?>
-
-        </section>
-
-    </body>
-</html>
+require('controller/controller.php');
+try{
+    if(isset($_GET['page'])) {
+        if($_GET['page'] == 'accueil'){
+            getHomepage();
+        } else if ($_GET['page'] == 'avis'){
+            getCommentpage();
+        } else {
+            throw new Exception ("Cette page n'existe pas ou a été supprimée");
+        }
+    } else {
+        getHomepage();
+    }
+}
+catch(Exception $e) {
+    $error = $e->getmessage();
+    require('view/errorView.php');
+}
