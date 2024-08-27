@@ -2,7 +2,7 @@
 // Traitement - récupération des données
 
 
-function getUtilisateurs(){
+function getUsers(){
     try {
         $bdd = new PDO('mysql:host=localhost;dbname=mvc-udemy;charset=utf8', 'root', '');
     } catch(Exception $e) {
